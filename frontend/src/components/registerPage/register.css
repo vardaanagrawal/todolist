@@ -1,0 +1,81 @@
+.Page{
+    height: 100vh;
+    background-color: rgba(255, 99, 71, 0.301);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.box{
+    height: 600px;
+    width: 400px;
+    background-color: white;
+    box-shadow: rgb(143, 141, 141) 1px 1px 20px 1px;
+    overflow: hidden;
+}
+
+.header{
+    height: 70px;
+    font-size: xx-large;
+    font-weight: bold;
+    text-align: center;
+    padding-top: 30px;
+}
+
+.body{
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+input{
+    height: 50px;
+    width: 300px;
+    padding-left: 10px;
+    font-size: large;
+    border-radius: 10px;
+    border: solid black 1px;
+    background-color: whitesmoke;
+}
+button{
+    height: 50px;
+    width: 300px;
+    padding-left: 10px;
+    font-size: x-large;
+    font-weight: bold;
+    border-radius: 10px;
+    border: solid black 1px;
+    background-color: tomato;
+    color: whitesmoke;
+}
+
+.footer{
+    height: 100px;
+    text-align: center;
+    padding-top: 20px;
+}
+
+.showMessage{
+    height: 30px;
+    width: 100%;
+    text-align: center;
+    color: whitesmoke;
+    font-size: larger;
+}
+.hidemessage{
+    display: none;
+}
+
+@media only screen and (max-width: 420px){
+    .box{
+        width: 95%;
+    }
+    input{
+        width: 90%;
+    }
+    button{
+        width: 90%;
+    }
+}

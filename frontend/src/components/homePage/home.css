@@ -1,0 +1,95 @@
+.home {
+  height: 100vh;
+  width: 100%;
+  background-color: rgb(127, 204, 255);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: scroll;
+}
+
+.navbar {
+  height: 70px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  font-size: xx-large;
+  font-weight: bolder;
+  background-color: rgb(172, 230, 180);
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.logout-btn {
+  height: 35px;
+  width: 70px;
+  border-radius: 0;
+  font-size: medium;
+  font-weight: normal;
+  transform-origin: 50% 50%;
+}
+
+.home_box {
+  margin-top: 70px;
+  height: 500px;
+  width: 800px;
+}
+
+.home_form {
+  height: 100px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.home_input {
+  height: 50px;
+  width: 300px;
+  background-color: whitesmoke;
+}
+
+.homebtn {
+  width: 100px;
+}
+
+.home_table {
+  height: 400px;
+  width: 100%;
+  overflow: scroll;
+}
+
+table {
+  width: 100%;
+  border: solid black 1px;
+  background-color: whitesmoke;
+}
+th,
+td {
+  border: solid black 1px;
+  height: 30px;
+}
+.dltbtn {
+  height: 90%;
+  width: 60%;
+  background-color: red;
+  border-radius: 0%;
+}
+::-webkit-scrollbar {
+  display: none;
+}
+
+@media only screen and (max-width: 750px) {
+  .home_box {
+    width: 95%;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .home_form {
+    flex-direction: column;
+    height: 300px;
+  }
+}
