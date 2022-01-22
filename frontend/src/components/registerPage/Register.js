@@ -37,7 +37,7 @@ export default function Register() {
       };
       if (user.password === user.confirmpassword) {
         axios
-          .post("http://localhost:7000/registeruser", newUser)
+          .post("/registeruser", newUser)
           .then((res) => {
             setStatus(res.data.status);
             setMessage(res.data.message);

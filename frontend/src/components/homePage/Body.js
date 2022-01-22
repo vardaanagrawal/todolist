@@ -10,7 +10,7 @@ export default function Body() {
   const email = decodedtoken.email;
   //display the list when page loads and list gets updated
   useEffect(() => {
-    axios.get("http://localhost:7000/getlist/" + email).then((res) => {
+    axios.get("/getlist/" + email).then((res) => {
       setList(res.data.list);
     });
     return;
@@ -37,12 +37,12 @@ export default function Body() {
   //add button function
   function addItem(event) {
     event.preventDefault();
-    axios.post("http://localhost:7000/addItem", data);
+    axios.post("/addItem", data);
   }
 
   //delete button function
   function deleteItem(item) {
-    axios.post("http://localhost:7000/deleteItem", {
+    axios.post("/deleteItem", {
       email: email,
       id: item.id,
       title: item.title,

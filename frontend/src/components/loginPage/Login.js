@@ -30,7 +30,7 @@ export default function Login() {
       }, 2500);
     } else {
       axios
-      .post("http://localhost:7000/loginuser", {
+      .post("/loginuser", {
         email: user.email,
         password: user.password,
       })
