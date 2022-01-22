@@ -3,7 +3,7 @@ import React from 'react'
 export default function Navbar() {
     const logout = ()=> {
         localStorage.removeItem('token');
-        window.location.href = 'http://localhost:3000/login';
+        window.location.href = '/login';
     }
     return (
         <div className='navbar'>
