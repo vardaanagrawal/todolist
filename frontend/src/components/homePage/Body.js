@@ -1,23 +1,26 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import jwt from "jwt-decode";
 
 export default function Body() {
   const [list, setList] = useState([]);
-
+  
+  const token = localStorage.getItem('token');
+  const decodedtoken = jwt(token);
+  const email = decodedtoken.email;
   //display the list when page loads and list gets updated
   useEffect(() => {
-    const user = localStorage.getItem("todoauthemail");
-    axios.get("http://localhost:7000/getlist/" + user).then((res) => {
+    axios.get("http://localhost:7000/getlist/" + email).then((res) => {
       setList(res.data.list);
     });
     return;
   }, [list]);
 
   const [data, setData] = useState({
-    email: localStorage.getItem("todoauthemail"),
+    email: email,
     title: "",
     description: "",
-    id: "",
+    id: ""
   });
 
   //handle the change in input fields (title and description)
@@ -40,7 +43,7 @@ export default function Body() {
   //delete button function
   function deleteItem(item) {
     axios.post("http://localhost:7000/deleteItem", {
-      email: localStorage.getItem("todoauthemail"),
+      email: email,
       id: item.id,
       title: item.title,
       description: item.description,

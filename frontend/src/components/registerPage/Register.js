@@ -26,7 +26,7 @@ export default function Register() {
       setMessageActive(true);
       setTimeout(() => {
         setMessageActive(false);
-      }, 5000);
+      }, 2500);
       setMessage("please enter details");
     } 
     else {
@@ -44,14 +44,14 @@ export default function Register() {
             setMessageActive(true);
             setTimeout(() => {
               setMessageActive(false);
-            }, 5000);
+            }, 2500);
           });
       } else {
         setStatus(400);
         setMessageActive(true);
         setTimeout(() => {
           setMessageActive(false);
-        }, 5000);
+        }, 2500);
         setMessage("passwords do not match");
       }
     }
@@ -64,7 +64,7 @@ export default function Register() {
         <div className="body">
           <div
             className={messageActive ? "showMessage" : "hidemessage"}
-            style={{ backgroundColor: status == 200 ? "green" : "red" }}
+            style={{ backgroundColor: status === 200 ? "green" : "red" }}
           >
             {message}
           </div>
@@ -89,7 +89,7 @@ export default function Register() {
           <button onClick={addUser}>Register</button>
         </div>
         <div className="footer">
-          already a user? Login <Link to="/login">here</Link>
+          Already a user? Login <Link to="/login">here</Link>
         </div>
       </div>
     </div>

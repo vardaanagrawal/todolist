@@ -1,16 +1,20 @@
-import express from "express";
-import mongoose from "mongoose";
-import cors from "cors";
-import { v4 as uuid } from "uuid";
+const express = require('express');
+const mongoose = require('mongoose');
+const cors = require('cors');
+const v4 = require('uuid');
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
+const dotenv = require('dotenv');
+const path = require('path');
 const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-const port = 7000;
+dotenv.config();
 
 //connect to mongodb
 mongoose.connect(
-  "mongodb+srv://vardaan:mongodbkapassword@crudapp.orljv.mongodb.net/todolist?retryWrites=true&w=majority"
+  process.env.MONGODB_LINK,()=>{console.log('connected to mongodb');}
 );
 
 //data schema
@@ -25,9 +29,13 @@ const User = mongoose.model("user", userSchema);
 
 //Registration route
 app.post("/registeruser", async (req, res) => {
+
+  const salt = await bcrypt.genSalt(10);
+  const password = await bcrypt.hash(req.body.password, salt);
+  
   const newUser = new User({
     email: req.body.email,
-    password: req.body.password,
+    password: password,
     list: [],
   });
   const email = req.body.email;
@@ -49,14 +57,19 @@ app.post("/registeruser", async (req, res) => {
 });
 
 //login route
-app.get("/loginuser/:email/:password", async (req, res) => {
-  const email = req.params.email;
+app.post("/loginuser", async (req, res) => {
+  const email = req.body.email;
   const userExist = await User.findOne({ email });
   if (userExist) {
-    if (req.params.password === userExist.password) {
-      res.send({
+  const ans = await bcrypt.compare(req.body.password, userExist.password);
+    if (ans) {
+      const token = jwt.sign({
+        email: email
+      },process.env.JWT_SECRET)
+      return res.json({
         status: 200,
         message: "Login Succesful",
+        token: token
       });
     } else {
       res.send({
@@ -83,7 +96,7 @@ app.get("/getlist/:email", async (req, res) => {
 app.post("/addItem", async (req, res) => {
   const email = req.body.email;
   const user = await User.findOne({ email });
-  const unique_id = uuid();
+  const unique_id = v4();
   user.list.push({
     id: unique_id,
     title: req.body.title,
@@ -106,7 +119,21 @@ app.post("/deleteItem", async (req, res) => {
 });
 
 
+if(process.env.NODE_ENV === "production"){
+  app.use(express.static(path.join(__dirname,'/frontend/build')));
 
-app.listen(port, function () {
-  console.log("Express is running");
+  app.get('*',(req,res) => {
+    res.sendFile(path.join(__dirname,'frontend','build','index.html'));
+  })
+}
+else{
+  app.get('/',(req,res)=>{
+    res.send("Api running");
+  })
+}
+
+
+
+app.listen(process.env.PORT, function () {
+  console.log("Express is running on port: "+ process.env.PORT);
 });
