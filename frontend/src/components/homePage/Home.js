@@ -2,7 +2,9 @@ import React,{useEffect, useState} from 'react';
 import Navbar from './Navbar';
 import './home.css';
 import Body from './Body';
+import Profile from './Profile';
 import jwt_decode from 'jwt-decode';
+import {BrowserRouter,Routes,Route} from 'react-router-dom';
 
 export default function Home() {
     
@@ -27,7 +29,7 @@ export default function Home() {
         return (    
         <div className='home'>
             <Navbar/>
-            <Body/>
+            <Body/>           
         </div>        
     )
         }

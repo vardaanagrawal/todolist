@@ -1,35 +1,13 @@
 .home {
   height: 100vh;
   width: 100%;
-  background-color: rgb(127, 204, 255);
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: scroll;
+  background: linear-gradient(white,azure);
 }
 
-.navbar {
-  height: 70px;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  font-size: xx-large;
-  font-weight: bolder;
-  background-color: rgb(172, 230, 180);
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
-.logout-btn {
-  height: 35px;
-  width: 70px;
-  border-radius: 0;
-  font-size: medium;
-  font-weight: normal;
-  transform-origin: 50% 50%;
-}
 
 .home_box {
   margin-top: 70px;
@@ -51,8 +29,10 @@
   background-color: whitesmoke;
 }
 
-.homebtn {
+.addbtn {
   width: 100px;
+  background-color: cornflowerblue;
+  color: black;
 }
 
 .home_table {
@@ -72,10 +52,10 @@ td {
   height: 30px;
 }
 .dltbtn {
-  height: 90%;
-  width: 60%;
-  background-color: red;
-  border-radius: 0%;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(247, 75, 75, 0.952);
+  border-radius: 5px;
 }
 ::-webkit-scrollbar {
   display: none;

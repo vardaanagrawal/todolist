@@ -68,6 +68,7 @@ export default function Register() {
           >
             {message}
           </div>
+          
           <input
             type="email"
             placeholder="Email"
