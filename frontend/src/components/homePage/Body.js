@@ -12,9 +12,11 @@ export default function Body() {
   useEffect(() => {
     axios.get("/getlist/" + email).then((res) => {
       setList(res.data.list);
+      console.log(res.data.list);
     });
+    
     return;
-  }, [list]);
+  },[]);
 
   const [data, setData] = useState({
     email: email,
@@ -37,7 +39,17 @@ export default function Body() {
   //add button function
   function addItem(event) {
     event.preventDefault();
-    axios.post("/addItem", data);
+    axios.post("/addItem", data)
+    .then(
+      getList()
+    )
+  }
+
+  function getList(){
+    axios.get("/getlist/" + email).then((res) => {
+      setList(res.data.list);
+      console.log(res.data.list);
+    });
   }
 
   //delete button function
@@ -47,7 +59,9 @@ export default function Body() {
       id: item.id,
       title: item.title,
       description: item.description,
-    });
+    }).then(
+      getList()
+    )
   }
 
   return (
